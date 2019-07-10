@@ -34,3 +34,6 @@ HEADERS += \
 
 FORMS += \
         View/mainview.ui
+
+RESOURCES += \
+    vfpresources.qrc

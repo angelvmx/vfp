@@ -22,7 +22,7 @@
     <item>
      <widget class="QTabWidget" name="tabMainView">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabControl">
        <attribute name="title">
@@ -33,6 +33,11 @@
        <attribute name="title">
         <string>Setup</string>
        </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QVBoxLayout" name="loSetubTab"/>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

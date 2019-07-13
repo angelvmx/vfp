@@ -24,16 +24,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 QMAKE_CXXFLAGS = -std=c++11
 
 SOURCES += \
-        main.cpp \
-        View/mainview.cpp \
-    View/testclass.cpp
+    main.cpp \
+    View/mainview.cpp \
+    View/setubtab.cpp
 
 HEADERS += \
-        View/mainview.h \
-    View/testclass.h
+    View/mainview.h \
+    View/testclass.h \
+    View/setubtab.h
 
 FORMS += \
-        View/mainview.ui
+    View/mainview.ui \
+    View/setubtab.ui
 
 RESOURCES += \
     vfpresources.qrc

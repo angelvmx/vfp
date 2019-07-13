@@ -1,12 +1,12 @@
 #include "startup.h"
-#include "View/setubtab.h"
+#include "View/setuptab.h"
 #include "View/mainview.h"
 
 namespace Ps {
 
     Startup::Startup() :
         QObject(nullptr),
-        m_setupTab(*new SetubTab(nullptr)),
+        m_setupTab(*new SetupTab(nullptr)),
         m_mainView(*new MainView(nullptr, m_setupTab))
     {
     }

@@ -1,5 +1,5 @@
-#ifndef SETUBTAB_H
-#define SETUBTAB_H
+#ifndef SETUPTAB_H
+#define SETUPTAB_H
 
 #include <QWidget>
 
@@ -9,13 +9,13 @@ namespace Ui {
 
 namespace Ps {
 
-    class SetubTab : public QWidget
+    class SetupTab : public QWidget
     {
         Q_OBJECT
 
     public:
-        explicit SetubTab(QWidget *parent = 0);
-        ~SetubTab();
+        explicit SetupTab(QWidget *parent = 0);
+        ~SetupTab();
 
     private:
         Ui::SetubTab *ui;

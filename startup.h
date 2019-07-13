@@ -5,7 +5,7 @@
 
 namespace Ps {
     class MainView;
-    class SetubTab;
+    class SetupTab;
 
     class Startup : public QObject
     {
@@ -16,7 +16,7 @@ namespace Ps {
         void show() const;
 
     private:
-        SetubTab& m_setupTab;
+        SetupTab& m_setupTab;
         MainView& m_mainView;
         explicit Startup(const Startup &rhs) = delete;
         Startup& operator= (const Startup& rhs) = delete;

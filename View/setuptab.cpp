@@ -1,15 +1,15 @@
-#include "setubtab.h"
+#include "setuptab.h"
 #include "ui_setubtab.h"
 
 namespace Ps {
-    SetubTab::SetubTab(QWidget *parent) :
+    SetupTab::SetupTab(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::SetubTab)
     {
         ui->setupUi(this);
     }
 
-    SetubTab::~SetubTab()
+    SetupTab::~SetupTab()
     {
         delete ui;
     }

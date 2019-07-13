@@ -9,18 +9,18 @@ namespace Ui {
 
 namespace Ps
 {
-    class SetubTab;
+    class SetupTab;
 
     class MainView : public QMainWindow
     {
         Q_OBJECT
 
     public:
-        explicit MainView(QWidget *parent, Ps::SetubTab &setup);
+        explicit MainView(QWidget *parent, Ps::SetupTab &setup);
         ~MainView();
 
     private:
-        SetubTab& m_setupTab;
+        SetupTab& m_setupTab;
         Ui::MainView *ui;
     };
 }

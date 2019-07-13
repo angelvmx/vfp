@@ -1,9 +1,9 @@
 #include "mainview.h"
 #include "ui_mainview.h"
-#include "View/setubtab.h"
+#include "View/setuptab.h"
 
 namespace Ps {
-    MainView::MainView(QWidget *parent, Ps::SetubTab &setup) :
+    MainView::MainView(QWidget *parent, Ps::SetupTab &setup) :
         QMainWindow(parent),
         m_setupTab(setup),
         ui(new Ui::MainView)

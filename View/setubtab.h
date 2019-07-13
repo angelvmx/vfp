@@ -4,19 +4,23 @@
 #include <QWidget>
 
 namespace Ui {
-class SetubTab;
+    class SetubTab;
 }
 
-class SetubTab : public QWidget
-{
-    Q_OBJECT
+namespace Ps {
 
-public:
-    explicit SetubTab(QWidget *parent = 0);
-    ~SetubTab();
+    class SetubTab : public QWidget
+    {
+        Q_OBJECT
 
-private:
-    Ui::SetubTab *ui;
-};
+    public:
+        explicit SetubTab(QWidget *parent = 0);
+        ~SetubTab();
+
+    private:
+        Ui::SetubTab *ui;
+    };
+
+}
 
 #endif // SETUBTAB_H

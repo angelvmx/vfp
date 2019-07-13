@@ -3,13 +3,14 @@
 #include "View/setubtab.h"
 
 namespace Ps {
-    MainView::MainView(QWidget *parent) :
+    MainView::MainView(QWidget *parent, Ps::SetubTab &setup) :
         QMainWindow(parent),
+        m_setupTab(setup),
         ui(new Ui::MainView)
     {
         ui->setupUi(this);
-        auto setup_tab = new SetubTab(this);
-        ui->loSetubTab->addWidget(setup_tab);
+        m_setupTab.setParent(this);
+        ui->loSetubTab->addWidget(&m_setupTab);
     }
 
     MainView::~MainView()

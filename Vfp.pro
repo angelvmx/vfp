@@ -26,12 +26,16 @@ QMAKE_CXXFLAGS = -std=c++11
 SOURCES += \
     main.cpp \
     View/mainview.cpp \
-    View/setubtab.cpp
+    View/setubtab.cpp \
+    startup.cpp \
+    utils.cpp
 
 HEADERS += \
     View/mainview.h \
     View/testclass.h \
-    View/setubtab.h
+    View/setubtab.h \
+    startup.h \
+    utils.h
 
 FORMS += \
     View/mainview.ui \

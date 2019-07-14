@@ -2,6 +2,7 @@
 #include "View/setuptab.h"
 #include "View/mainview.h"
 #include "utils.h"
+#include "Model/settings.h"
 
 namespace Ps {
 
@@ -10,6 +11,7 @@ namespace Ps {
         m_setupTab(*new SetupTab(nullptr)),
         m_mainView(*new MainView(nullptr, m_setupTab))
     {
+        Settings my_settings(this, "settings.json");
     }
 
     Startup::~Startup()

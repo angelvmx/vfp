@@ -10,4 +10,7 @@
         <file>Images/Setup.png</file>
         <file>Images/ControlPadW.png</file>
     </qresource>
+    <qresource prefix="/json">
+        <file>settings.json</file>
+    </qresource>
 </RCC>

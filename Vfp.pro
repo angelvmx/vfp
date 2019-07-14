@@ -28,14 +28,16 @@ SOURCES += \
     View/mainview.cpp \
     startup.cpp \
     utils.cpp \
-    View/setuptab.cpp
+    View/setuptab.cpp \
+    Model/settings.cpp
 
 HEADERS += \
     View/mainview.h \
     View/testclass.h \
     startup.h \
     utils.h \
-    View/setuptab.h
+    View/setuptab.h \
+    Model/settings.h
 
 FORMS += \
     View/mainview.ui \

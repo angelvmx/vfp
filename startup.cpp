@@ -1,6 +1,7 @@
 #include "startup.h"
 #include "View/setuptab.h"
 #include "View/mainview.h"
+#include "utils.h"
 
 namespace Ps {
 
@@ -13,6 +14,8 @@ namespace Ps {
 
     Startup::~Startup()
     {
+        Utils::DestructorMsg(this);
+        delete &m_mainView;
     }
 
     void Startup::show() const

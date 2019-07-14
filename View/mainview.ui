@@ -25,11 +25,19 @@
        <number>1</number>
       </property>
       <widget class="QWidget" name="tabControl">
+       <attribute name="icon">
+        <iconset resource="../vfpresources.qrc">
+         <normaloff>:/root/Images/ControlPadW.png</normaloff>:/root/Images/ControlPadW.png</iconset>
+       </attribute>
        <attribute name="title">
         <string>Control</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tabSetup">
+       <attribute name="icon">
+        <iconset resource="../vfpresources.qrc">
+         <normaloff>:/root/Images/Setup.png</normaloff>:/root/Images/Setup.png</iconset>
+       </attribute>
        <attribute name="title">
         <string>Setup</string>
        </attribute>

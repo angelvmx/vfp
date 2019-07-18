@@ -12,6 +12,7 @@ namespace Ps {
         m_mainView(*new MainView(nullptr, m_setupTab))
     {
         Settings my_settings(this, "settings.json");
+        my_settings.ParseJsonData();
     }
 
     Startup::~Startup()

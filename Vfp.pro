@@ -29,7 +29,8 @@ SOURCES += \
     startup.cpp \
     utils.cpp \
     View/setuptab.cpp \
-    Model/settings.cpp
+    Model/settings.cpp \
+    Model/provider.cpp
 
 HEADERS += \
     View/mainview.h \
@@ -37,7 +38,8 @@ HEADERS += \
     startup.h \
     utils.h \
     View/setuptab.h \
-    Model/settings.h
+    Model/settings.h \
+    Model/provider.h
 
 FORMS += \
     View/mainview.ui \

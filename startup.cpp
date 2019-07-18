@@ -3,6 +3,7 @@
 #include "View/mainview.h"
 #include "utils.h"
 #include "Model/settings.h"
+#include "Model/provider.h"
 
 namespace Ps {
 
@@ -11,7 +12,7 @@ namespace Ps {
         m_setupTab(*new SetupTab(nullptr)),
         m_mainView(*new MainView(nullptr, m_setupTab))
     {
-        Settings my_settings(this, "settings.json");
+        Settings& my_settings = Provider::GetSettingsAsSingleton();
         my_settings.ParseJsonData();
     }
 

@@ -1,11 +1,11 @@
 #pragma once
 #include <memory>
 
-namespace Ps
-{
+namespace Ps{
+
     class Settings;
 
-    class Provider
+    class Provider final
     {
     public:
         Provider();
@@ -13,7 +13,12 @@ namespace Ps
 
     private:
         static std::unique_ptr<Settings> m_instanceSettings;
+
+
         explicit Provider(const Provider& rhs) = delete;
         Provider& operator= (const Provider& rhs) = delete;
     };
 }
+
+
+

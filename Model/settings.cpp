@@ -5,37 +5,36 @@
 #include <QJsonParseError>
 #include <QJsonObject>
 #include <QJsonDocument>
-#include <utility>
 #include <QMessageBox>
-#include <QStringListModel>
 #include <QJsonArray>
+#include <QStringListModel>
 #include <QStandardPaths>
+#include <utility>
+
 
 namespace Ps
 {
-    static auto RESOURCE_PREFIX = QStringLiteral(":/json");
+
+    static auto RESOURCE_PREFIX =  QStringLiteral(":/json");
 
     Settings::Settings(QObject *parent, QString filename) :
         QObject(parent),
-        m_filename(filename),
-        m_modelCommands(* new QStringListModel(this))
+        m_filename (filename),
+        m_modelCommands (*new QStringListModel (this))
     {
     }
 
     void Settings::ParseJsonData()
     {
         QString raw_json = ReadJsonFile();
-
-        if (raw_json == 0)
-            return;
+        if (raw_json.size() == 0) return;
 
         auto json_result = GetJsonObject(raw_json);
         auto json_err = json_result.second;
-
-        if (json_err.error != QJsonParseError::NoError) {
+        if (json_err.error != QJsonParseError::NoError)
+        {
             ShowJsonParseError(json_err);
         }
-
         auto json_obj = json_result.first;
         m_applicationName = json_obj["applicationName"].toString();
         m_appShortName = json_obj["appShortName"].toString();
@@ -46,101 +45,61 @@ namespace Ps
         SetupCommands(json_obj);
     }
 
-    QString Settings::getApplicationName() const
-    {
-        return m_applicationName;
-    }
-
-    QString Settings::getAppShortName() const
-    {
-        return m_appShortName;
-    }
-
-    QString Settings::getHostName() const
-    {
-        return m_hostName;
-    }
-
-    quint16 Settings::getPortNumber() const
-    {
-        return m_portNumber;
-    }
-
-    int Settings::getLongWaitMs() const
-    {
-        return m_longWaitMs;
-    }
-
-    QStringListModel &Settings::getCommandsAsModel() const
-    {
-        return m_modelCommands;
-    }
-
-    int Settings::getShortWaitMs() const
-    {
-        return m_shortWaitMs;
-    }
-
     QString Settings::ReadJsonFile()
     {
         auto default_settings = ReadJsonFromInternalResource();
-        QDir config_dir = OpenConfigurationDirectory();
+        QDir config_dir = OpenConfigDirectory();
         auto path = config_dir.filePath(m_filename);
         QFile std_file(path);
-
         if (std_file.exists())
         {
-
-            if (!std_file.open(QFile::ReadOnly | QFile::Text))
+            if (!std_file.open(QFile::ReadOnly|QFile::Text))
             {
-                SendErrorMessage("Could not open " + path);
+               SendErrorMessage("Could not open " + path);
                 return default_settings;
             }
-
             QString settings = std_file.readAll();
             std_file.close();
-
             return settings;
         }
         else
         {
-            WriteDefaultToStdConfigFile(std_file, default_settings);
-            return default_settings;
+           WriteDefaultsToStdConfigFile(std_file,default_settings);
+           return default_settings;
         }
-
     }
 
-    void Settings::WriteDefaultToStdConfigFile(QFile& stdConfigFile,
+    void Settings::WriteDefaultsToStdConfigFile(QFile& stdConfigFile,
                                                 const QString &settings)
     {
         int length = settings.length();
-
-        if (!stdConfigFile.open(QFile::WriteOnly | QFile::Text))
+        if (!stdConfigFile.open(QFile::WriteOnly|QFile::Text))
         {
-            SendErrorMessage("Could not write the settings to -" + stdConfigFile.fileName());
+            SendErrorMessage("Could not open file to write - "+ stdConfigFile.fileName());
         }
 
-        auto bytes_written = stdConfigFile.write(qPrintable(settings), length);
-
+        auto bytes_written = stdConfigFile.write(qPrintable(settings),length );
         if (bytes_written != length)
         {
-            SendErrorMessage("Couldn't remove configuration file. Please delete me: " +
-                             stdConfigFile.fileName());
+            SendErrorMessage("Could not write the settings to -"+ stdConfigFile.fileName());
+            if (!stdConfigFile.remove())
+            {
+                SendErrorMessage("Couldn't remove configuration file. Please delete manually"+
+                                 stdConfigFile.fileName());
+            }
         }
-
         stdConfigFile.close();
+
     }
 
-    QDir Settings::OpenConfigurationDirectory()
+    QDir Settings::OpenConfigDirectory()
     {
-        QDir config_dir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation));
-
+        QDir config_dir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation ));
         if (!config_dir.exists())
         {
             QDir dir;
             dir.mkpath(config_dir.path());
         }
-
         return config_dir;
     }
 
@@ -153,30 +112,39 @@ namespace Ps
         return std::make_pair(json_obj, json_parse_error);
     }
 
+    void Settings::SetupCommands(QJsonObject json_obj)
+    {
+        QJsonArray cmd_array = json_obj["commands"].toArray();
+        QStringList cmd_list;
+        for (auto item: cmd_array)
+        {
+            cmd_list.append(item.toString());
+        }
+        m_modelCommands.setStringList(cmd_list);
+    }
+
+
+
     QString Settings::ReadJsonFromInternalResource()
     {
         QDir res_dir (RESOURCE_PREFIX);
-
         if (!res_dir.exists())
         {
-            SendErrorMessage("Internal resource path missing " +
-                res_dir.canonicalPath());
+            SendErrorMessage("Internal resource path missing "+
+                             res_dir.canonicalPath());
             return "";
         }
-
-
         auto path = res_dir.filePath(m_filename);
         QFile res_file(path);
-
-        if (!res_file.open(QFile::ReadOnly | QFile::Text))
+        if (!res_file.open(QFile::ReadOnly| QFile::Text))
         {
-            SendErrorMessage("Could not open internal resource " +
-                path);
+            SendErrorMessage("Could not open internal resource "+
+                             path);
             return "";
         }
-
         QString settings = res_file.readAll();
         return settings;
+
     }
 
     void Settings::SendErrorMessage(const QString& msg)
@@ -188,19 +156,6 @@ namespace Ps
     {
         QString msg = tr("Error parsing Json settings file.\n");
         msg.append(jsonError.errorString());
-        msg.append(tr("\nThe default values will be used."));
-        QMessageBox::critical(0, tr("VFP"), msg);
-    }
-
-    void Settings::SetupCommands(QJsonObject json_obj)
-    {
-        QJsonArray cmd_array = json_obj["commands"].toArray();
-        QStringList cmd_list;
-
-        for (auto item: cmd_array) {
-            cmd_list.append(item.toString());
-        }
-
-        m_modelCommands.setStringList(cmd_list);
+        QMessageBox::critical(0,tr("VFP"),msg);
     }
 }

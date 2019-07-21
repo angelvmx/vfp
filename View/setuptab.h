@@ -4,23 +4,23 @@
 #include <QWidget>
 
 namespace Ui {
-    class SetubTab;
+  class SetupTab;
 }
 
-namespace Ps {
+namespace Ps{
 
-    class SetupTab : public QWidget
-    {
-        Q_OBJECT
 
-    public:
-        explicit SetupTab(QWidget *parent = 0);
-        ~SetupTab();
+  class SetupTab : public QWidget
+  {
+    Q_OBJECT
 
-    private:
-        Ui::SetubTab *ui;
-    };
+  public:
+    explicit SetupTab(QWidget *parent = 0);
+    ~SetupTab();
 
+  private:
+    Ui::SetupTab *ui;
+  };
 }
 
-#endif // SETUBTAB_H
+#endif // SETUPTAB_H

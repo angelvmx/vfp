@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>515</width>
-    <height>360</height>
+    <width>462</width>
+    <height>387</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Virtual Front Panel - Gating Controller</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../vfpresources.qrc">
+   <iconset resource="../VfpResources.qrc">
     <normaloff>:/root/Images/Syncor48.png</normaloff>:/root/Images/Syncor48.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -26,7 +26,7 @@
       </property>
       <widget class="QWidget" name="tabControl">
        <attribute name="icon">
-        <iconset resource="../vfpresources.qrc">
+        <iconset resource="../VfpResources.qrc">
          <normaloff>:/root/Images/ControlPadW.png</normaloff>:/root/Images/ControlPadW.png</iconset>
        </attribute>
        <attribute name="title">
@@ -35,7 +35,7 @@
       </widget>
       <widget class="QWidget" name="tabSetup">
        <attribute name="icon">
-        <iconset resource="../vfpresources.qrc">
+        <iconset resource="../VfpResources.qrc">
          <normaloff>:/root/Images/Setup.png</normaloff>:/root/Images/Setup.png</iconset>
        </attribute>
        <attribute name="title">
@@ -43,7 +43,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <layout class="QVBoxLayout" name="loSetubTab"/>
+         <layout class="QVBoxLayout" name="loSetupTab"/>
         </item>
        </layout>
       </widget>
@@ -56,8 +56,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>515</width>
-     <height>23</height>
+     <width>462</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -73,7 +73,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="../vfpresources.qrc"/>
+  <include location="../VfpResources.qrc"/>
  </resources>
  <connections/>
 </ui>

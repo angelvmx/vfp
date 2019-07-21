@@ -4,25 +4,25 @@
 #include <QMainWindow>
 
 namespace Ui {
-    class MainView;
+  class MainView;
 }
 
-namespace Ps
-{
-    class SetupTab;
+namespace Ps {
 
-    class MainView : public QMainWindow
-    {
-        Q_OBJECT
+  class SetupTab;
 
-    public:
-        explicit MainView(QWidget *parent, Ps::SetupTab &setup);
-        ~MainView();
+  class MainView : public QMainWindow
+  {
+    Q_OBJECT
 
-    private:
-        SetupTab& m_setupTab;
-        Ui::MainView *ui;
-    };
+  public:
+    explicit MainView(QWidget *parent, Ps::SetupTab &setup);
+    ~MainView();
+
+  private:
+    SetupTab& m_setupTab;
+    Ui::MainView *ui;
+  };
 }
 
 #endif // MAINVIEW_H

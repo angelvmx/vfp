@@ -5,12 +5,12 @@ class QString;
 class QStringListModel;
 class QJsonParseError;
 class QJsonObject;
-class QJsonError;
 class QFile;
 class QDir;
 
-namespace Ps
-{
+
+namespace Ps{
+
     typedef std::pair<QJsonObject, QJsonParseError> JsonObjErrPair;
 
     class Settings : public QObject
@@ -18,17 +18,14 @@ namespace Ps
         Q_OBJECT
     public:
         explicit Settings(QObject *parent, QString filename);
-
         void ParseJsonData();
-
-
-        QString getApplicationName() const;
-        QString getAppShortName() const;
-        QString getHostName() const;
-        quint16 getPortNumber() const;
-        int getShortWaitMs() const;
-        int getLongWaitMs() const;
-        QStringListModel &getCommandsAsModel() const;
+        QString getApplicationName() const {return m_applicationName;}
+        QString getAppShortName() const {return m_appShortName;}
+        QString getHostName() const {return m_hostName;}
+        quint16 getPortNumber()  const {return m_portNumber;}
+        int getShortWaitMs() const { return m_shortWaitMs;}
+        int getLongWaitMs() const {return m_longWaitMs;}
+        QStringListModel& getCommandsAsModel() const {return m_modelCommands;}
 
     signals:
         void NotifyStatusMessage(QString message);
@@ -39,20 +36,26 @@ namespace Ps
         QString m_appShortName;
         QString m_hostName;
         quint16 m_portNumber;
-        int m_shortWaitMs;
         int m_longWaitMs;
+        int m_shortWaitMs;
         QStringListModel& m_modelCommands;
 
         QString ReadJsonFile();
         QString ReadJsonFromInternalResource();
-        void SendErrorMessage(const QString &msg);
+        void SendErrorMessage(const QString& msg);
+        JsonObjErrPair GetJsonPair(const QString &rawJson);
         JsonObjErrPair GetJsonObject(const QString &rawJson);
-        void SetupCommands(QJsonObject json_obj);
         void ShowJsonParseError(QJsonParseError jsonError);
-        QDir OpenConfigurationDirectory();
-        void WriteDefaultToStdConfigFile(QFile &stdConfigFile, const QString &settings);
+        void SetupCommands(QJsonObject json_obj);
+        QDir OpenConfigDirectory();
+        void WriteDefaultsToStdConfigFile(QFile &stdConfigFile, const QString &settings);
+
 
         explicit Settings(const Settings& rhs) = delete;
         Settings& operator= (const Settings& rhs) = delete;
+
     };
 }
+
+
+

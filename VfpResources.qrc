@@ -7,8 +7,8 @@
         <file>Images/Send.png</file>
         <file>Images/StopRed16.png</file>
         <file>Images/Syncor48.png</file>
-        <file>Images/Setup.png</file>
         <file>Images/ControlPadW.png</file>
+        <file>Images/Setup.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>settings.json</file>

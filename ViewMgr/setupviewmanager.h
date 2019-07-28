@@ -17,6 +17,9 @@ namespace Ps
 
         virtual ~SetupViewManager();
 
+    signals:
+        void NotifyStatusUpdated(const QString& value);
+
     private:
         SetupTab& m_setupTab;
         Instrument& m_instrument;
@@ -24,6 +27,7 @@ namespace Ps
         SetupViewManager& operator = (const SetupViewManager& rhs) = delete;
         void WireSettings(Settings &config);
         void WireHostAndPort();
+        void WireMessages();
     };
 
 }

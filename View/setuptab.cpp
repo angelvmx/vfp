@@ -1,6 +1,7 @@
 #include "setuptab.h"
 #include "ui_setuptab.h"
 #include "utils.h"
+#include <QStringListModel>
 
 namespace Ps{
     SetupTab::SetupTab(QWidget *parent) :
@@ -26,6 +27,11 @@ namespace Ps{
     {
         ui->editPort->setText(QString::number(value));
         emit NotifyPortChanged(value);
+    }
+
+    void SetupTab::SetCommands(QStringListModel &commands)
+    {
+        ui->cmbCommands->setModel(&commands);
     }
 
     void SetupTab::onStatusUpdated(const QString &statusMsg)

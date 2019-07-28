@@ -19,6 +19,7 @@ namespace Ps
 
         m_setupTab.SetHostName(config.getHostName());
         m_setupTab.SetPort(config.getPortNumber());
+        m_setupTab.SetCommands(config.getCommandsAsModel());
     }
 
     SetupViewManager::~SetupViewManager()

@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+class QStringListModel;
+
 namespace Ui {
     class SetupTab;
 }
@@ -20,6 +22,7 @@ namespace Ps{
 
         void SetHostName(const QString &value);
         void SetPort(quint16 value);
+        void SetCommands(QStringListModel& commands);
     signals:
         void NotifyHostNameChanged(const QString &value);
         void NotifyPortChanged(quint16 value);

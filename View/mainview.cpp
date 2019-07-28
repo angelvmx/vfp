@@ -12,7 +12,7 @@ namespace Ps{
   {
     ui->setupUi(this);
     m_setupTab.setParent(this);
-    ui->loSetupTab->addWidget(&m_setupTab);
+    ui->loSetubTab->addWidget(&m_setupTab);
 
   }
 

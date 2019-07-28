@@ -22,6 +22,8 @@ namespace Ps
         Instrument& m_instrument;
         explicit SetupViewManager(const SetupViewManager& rhs) = delete;
         SetupViewManager& operator = (const SetupViewManager& rhs) = delete;
+        void WireSettings(Settings &config);
+        void WireHostAndPort();
     };
 
 }

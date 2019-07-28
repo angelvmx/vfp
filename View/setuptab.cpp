@@ -16,4 +16,45 @@ namespace Ps{
         delete ui;
     }
 
+    void SetupTab::SetHostName(const QString& value)
+    {
+        ui->editIpAddress->setText(value);
+        emit NotifyHostNameChanged(value);
+    }
+
+    void SetupTab::SetPort(quint16 value)
+    {
+        ui->editPort->setText(QString::number(value));
+        emit NotifyPortChanged(value);
+    }
+
+    void SetupTab::onStatusUpdated(const QString &statusMsg)
+    {
+        ui->editInstMsgs->append(statusMsg);
+    }
+
+    void SetupTab::on_editIpAddress_editingFinished()
+    {
+        emit NotifyHostNameChanged(ui->editIpAddress->text());
+    }
+
+    void SetupTab::on_editPort_editingFinished()
+    {
+        bool ok;
+        int result = ui->editPort->text().toInt(&ok);
+
+        if (!ok || (result > USHRT_MAX))
+        {
+            ui->editInstMsgs->append(tr("Invalid Port Number " + result));
+        }
+        else
+        {
+            emit NotifyPortChanged(result);
+        }
+    }
+
 }
+
+
+
+

@@ -18,6 +18,7 @@ namespace Ps
         WireHostAndPort();
         WireMessages();
         WireButtons();
+        WireDisplayUpdate();
 
         m_setupTab.SetHostName(config.getHostName());
         m_setupTab.SetPort(config.getPortNumber());
@@ -28,11 +29,28 @@ namespace Ps
         m_instrument.SetShortWaitMs(short_wait);
         emit NotifyStatusUpdated(tr("Long Wait Ms: %1").arg(long_wait));
         emit NotifyStatusUpdated(tr("Short wait Ms: %1").arg(short_wait));
+        onDisconnected();
     }
 
     SetupViewManager::~SetupViewManager()
     {
         Utils::DestructorMsg(this);
+    }
+
+    void SetupViewManager::onConnected()
+    {
+        emit NotifyConnectEnabled(false);
+        emit NotifyDisconnectEnabled(true);
+        emit NotifyDirectCommandsEnabled(true);
+        emit NotifyControlTabEnabled(true);
+    }
+
+    void SetupViewManager::onDisconnected()
+    {
+        emit NotifyConnectEnabled(true);
+        emit NotifyDisconnectEnabled(false);
+        emit NotifyDirectCommandsEnabled(false);
+        emit NotifyControlTabEnabled(false);
     }
 
     void SetupViewManager::WireSettings(Settings& config)
@@ -65,11 +83,15 @@ namespace Ps
                 &m_instrument, &Instrument::Connect);
         connect(&m_instrument, &Instrument::NotifyConnected,
                 &m_setupTab, &SetupTab::onConnected);
+        connect(&m_instrument, &Instrument::NotifyConnected,
+                this, &SetupViewManager::onConnected);
 
         connect(&m_setupTab, &SetupTab::NotifyDisconnectClicked,
                 &m_instrument, &Instrument::Disconnect);
         connect(&m_instrument, &Instrument::NotifyDisconnected,
                 &m_setupTab, &SetupTab::onDisconected);
+        connect(&m_instrument, &Instrument::NotifyDisconnected,
+                this, &SetupViewManager::onDisconnected);
 
         connect(&m_setupTab, &SetupTab::NotifySendClicked,
                 &m_instrument, &Instrument::onSendRequest);
@@ -79,5 +101,17 @@ namespace Ps
                 &m_setupTab, &SetupTab::onDataReceived);
         connect(&m_instrument, &Instrument::NotifyDataSent,
                 &m_setupTab, &SetupTab::onDataSent);
+    }
+
+    void SetupViewManager::WireDisplayUpdate()
+    {
+        connect(this, &SetupViewManager::NotifyConnectEnabled,
+                &m_setupTab, &SetupTab::onConnectEnabled);
+        connect(this, &SetupViewManager::NotifyDisconnectEnabled,
+                &m_setupTab, &SetupTab::onDisconnectEnabled);
+        connect(this, &SetupViewManager::NotifyDirectCommandsEnabled,
+                &m_setupTab, &SetupTab::onDirectCommandsEnabled);
+        connect(this, &SetupViewManager::NotifyControlTabEnabled,
+                &m_setupTab, &SetupTab::onControlTabEnabled);
     }
 }

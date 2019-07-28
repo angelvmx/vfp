@@ -37,6 +37,10 @@ namespace Ps{
         void onDisconected();
         void onDataSent(const QString& dataSent);
         void onDataReceived(const QString& dataRead);
+        void onConnectEnabled(bool isEnabled);
+        void onDisconnectEnabled(bool isEnabled);
+        void onDirectCommandsEnabled(bool isEnabled);
+        void onControlTabEnabled(bool isEnabled);
 
     private slots:
         void on_editIpAddress_editingFinished();

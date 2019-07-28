@@ -61,6 +61,26 @@ namespace Ps{
         ui->editInstMsgs->append(dataRead);
     }
 
+    void SetupTab::onConnectEnabled(bool isEnabled)
+    {
+        ui->btnConnect->setEnabled(isEnabled);
+    }
+
+    void SetupTab::onDisconnectEnabled(bool isEnabled)
+    {
+        ui->btnDisconnect->setEnabled(isEnabled);
+    }
+
+    void SetupTab::onDirectCommandsEnabled(bool isEnabled)
+    {
+        ui->gbDirectCommands->setEnabled(isEnabled);
+    }
+
+    void SetupTab::onControlTabEnabled(bool isEnabled)
+    {
+        //TODO
+    }
+
     void SetupTab::on_editIpAddress_editingFinished()
     {
         emit NotifyHostNameChanged(ui->editIpAddress->text());

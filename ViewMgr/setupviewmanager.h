@@ -28,6 +28,7 @@ namespace Ps
         void WireSettings(Settings &config);
         void WireHostAndPort();
         void WireMessages();
+        void WireButtons();
     };
 
 }

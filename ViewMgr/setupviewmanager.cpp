@@ -17,6 +17,7 @@ namespace Ps
         config.ParseJsonData();
         WireHostAndPort();
         WireMessages();
+        WireButtons();
 
         m_setupTab.SetHostName(config.getHostName());
         m_setupTab.SetPort(config.getPortNumber());
@@ -56,5 +57,27 @@ namespace Ps
                 &m_setupTab, &SetupTab::onStatusUpdated);
         connect(this, &SetupViewManager::NotifyStatusUpdated,
                 &m_setupTab, &SetupTab::onStatusUpdated);
+    }
+
+    void SetupViewManager::WireButtons()
+    {
+        connect(&m_setupTab, &SetupTab::NotifyConnectClicked,
+                &m_instrument, &Instrument::Connect);
+        connect(&m_instrument, &Instrument::NotifyConnected,
+                &m_setupTab, &SetupTab::onConnected);
+
+        connect(&m_setupTab, &SetupTab::NotifyDisconnectClicked,
+                &m_instrument, &Instrument::Disconnect);
+        connect(&m_instrument, &Instrument::NotifyDisconnected,
+                &m_setupTab, &SetupTab::onDisconected);
+
+        connect(&m_setupTab, &SetupTab::NotifySendClicked,
+                &m_instrument, &Instrument::onSendRequest);
+        connect(&m_setupTab, &SetupTab::NotifyReceiveClicked,
+                &m_instrument, &Instrument::onReceiveRequest);
+        connect(&m_instrument, &Instrument::NotifyDataReceived,
+                &m_setupTab, &SetupTab::onDataReceived);
+        connect(&m_instrument, &Instrument::NotifyDataSent,
+                &m_setupTab, &SetupTab::onDataSent);
     }
 }

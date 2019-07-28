@@ -39,6 +39,28 @@ namespace Ps{
         ui->editInstMsgs->append(statusMsg);
     }
 
+    void SetupTab::onConnected()
+    {
+        auto connect_msg = QString(tr("Connected."));
+        ui->editInstMsgs->append(connect_msg);
+    }
+
+    void SetupTab::onDisconected()
+    {
+        auto disconnect_msg = QString(tr("Disconnected"));
+        ui->editInstMsgs->append(disconnect_msg);
+    }
+
+    void SetupTab::onDataSent(const QString &dataSent)
+    {
+        ui->editInstMsgs->append("Data Sent: " + dataSent);
+    }
+
+    void SetupTab::onDataReceived(const QString &dataRead)
+    {
+        ui->editInstMsgs->append(dataRead);
+    }
+
     void SetupTab::on_editIpAddress_editingFinished()
     {
         emit NotifyHostNameChanged(ui->editIpAddress->text());
@@ -59,7 +81,34 @@ namespace Ps{
         }
     }
 
+    void SetupTab::on_btnConnect_clicked()
+    {
+        emit NotifyConnectClicked();
+    }
+
+    void SetupTab::on_btnDisconnect_clicked()
+    {
+        emit NotifyDisconnectClicked();
+    }
+
+    void SetupTab::on_btnSend_clicked()
+    {
+        emit NotifySendClicked(ui->cmbCommands->currentText());
+    }
+
+    void SetupTab::on_btnReceive_clicked()
+    {
+        emit NotifyReceiveClicked();
+    }
+
+    void SetupTab::on_btnClear_clicked()
+    {
+        ui->editInstMsgs->clear();
+    }
+
 }
+
+
 
 
 

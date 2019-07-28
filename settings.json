@@ -2,7 +2,7 @@
   "applicationName": "Virtual Front Panel - Gating Controller",
   "appShortName": "VFP",
   "hostName": "localhost",
-  "port": 23,
+  "port": 2300,
   "tcpLongWaitMs": 1000,
   "tcpShortWaitMs": 10,
   "commands": [

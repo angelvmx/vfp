@@ -7,6 +7,7 @@ namespace Ps{
   class SetupTab;
   class Instrument;
   class SetupViewManager;
+  class ControlTab;
 
   class Startup final : public QObject
   {
@@ -18,6 +19,7 @@ namespace Ps{
 
   private:
     SetupTab& m_setupTab;
+    ControlTab& m_controlTab;
     MainView& m_mainView;
     Instrument* m_instrument;
     SetupViewManager* m_setupVm;

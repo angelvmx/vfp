@@ -10,13 +10,14 @@ namespace Ui {
 namespace Ps {
 
   class SetupTab;
+  class ControlTab;
 
   class MainView : public QMainWindow
   {
     Q_OBJECT
 
   public:
-    explicit MainView(QWidget *parent, Ps::SetupTab &setup);
+    explicit MainView(QWidget *parent, SetupTab &setup, ControlTab &contolTab);
     ~MainView();
 
   private:

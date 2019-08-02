@@ -26,6 +26,7 @@ namespace Ps{
         int getShortWaitMs() const { return m_shortWaitMs;}
         int getLongWaitMs() const {return m_longWaitMs;}
         QStringListModel& getCommandsAsModel() const {return m_modelCommands;}
+        QString getPwCommand() const;
 
     signals:
         void NotifyStatusMessage(QString message);
@@ -39,6 +40,7 @@ namespace Ps{
         int m_longWaitMs;
         int m_shortWaitMs;
         QStringListModel& m_modelCommands;
+        QString m_pwCommand;
 
         QString ReadJsonFile();
         QString ReadJsonFromInternalResource();

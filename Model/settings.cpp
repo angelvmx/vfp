@@ -10,11 +10,11 @@
 #include <QStringListModel>
 #include <QStandardPaths>
 #include <utility>
-
+#include <QDebug>
 
 namespace Ps
 {
-
+    static const int PW_CMD_INDEX = 5;
     static auto RESOURCE_PREFIX =  QStringLiteral(":/json");
 
     Settings::Settings(QObject *parent, QString filename) :
@@ -44,7 +44,12 @@ namespace Ps
         m_shortWaitMs = json_obj["tcpShortWaitMs"].toInt();
         SetupCommands(json_obj);
     }
-
+    
+    QString Settings::getPwCommand() const
+    {
+        return m_pwCommand;
+    }
+    
     QString Settings::ReadJsonFile()
     {
         auto default_settings = ReadJsonFromInternalResource();
@@ -121,6 +126,20 @@ namespace Ps
             cmd_list.append(item.toString());
         }
         m_modelCommands.setStringList(cmd_list);
+
+        auto index_cmd = m_modelCommands.index(PW_CMD_INDEX);
+        auto test_cmd = m_modelCommands.data(index_cmd, Qt::DisplayRole);
+        qDebug() << "Test Command the hard way " << test_cmd.toString();
+
+        if (PW_CMD_INDEX < cmd_list.size())
+        {
+            m_pwCommand = cmd_list[PW_CMD_INDEX];
+        }
+        else
+        {
+            emit NotifyStatusMessage("Unable to get pulse width command");
+        }
+
     }
 
 

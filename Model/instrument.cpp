@@ -2,6 +2,8 @@
 #include "Model/instsocket.h"
 #include "utils.h"
 #include <QDebug>
+#include "Model/provider.h"
+#include "Model/settings.h"
 
 namespace Ps
 {
@@ -101,7 +103,16 @@ namespace Ps
         else
        {
             emit NotifyDataReceived(input_buffer);
-       }
+        }
+    }
+
+    void Instrument::onPulseWidthChanged(double value)
+    {
+        Settings& settings = Provider::GetSettingsAsSingleton();
+        auto pw_cmd = settings.getPwCommand() + "%1;";
+        auto full_cmd = pw_cmd.arg(value);
+        m_instSocket.WriteData(full_cmd);
+        emit NotifyStatusUpdated(full_cmd);
     }
 
     void Instrument::WireConnections()

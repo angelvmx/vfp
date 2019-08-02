@@ -36,6 +36,7 @@ namespace Ps
         void onDisconnected();
         void onSendRequest(const QString& dataToSend);
         void onReceiveRequest();
+        void onPulseWidthChanged(double value);
 
     private:
         InstSocket& m_instSocket;

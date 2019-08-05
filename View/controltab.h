@@ -16,6 +16,12 @@ namespace Ps
         explicit ControlTab(QWidget *parent = 0);
         ~ControlTab();
 
+    signals:
+        void NotifyPulseWidthChanged(double value);
+
+    private slots:
+        void on_spinPulseWidth_valueChanged(double value);
+
     private:
         Ui::ControlTab *ui;
     };

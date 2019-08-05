@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     Model/instsocket.cpp \
     Model/instrument.cpp \
     ViewMgr/setupviewmanager.cpp \
-    View/controltab.cpp
+    View/controltab.cpp \
+    ViewMgr/controltabviewmanager.cpp
 
 
 HEADERS  += View/mainview.h \
@@ -35,7 +36,8 @@ HEADERS  += View/mainview.h \
     Model/instsocket.h \
     Model/instrument.h \
     ViewMgr/setupviewmanager.h \
-    View/controltab.h
+    View/controltab.h \
+    ViewMgr/controltabviewmanager.h
 
 FORMS    += View/mainview.ui \
     View/setuptab.ui \

@@ -18,4 +18,9 @@ namespace Ps
         delete ui;
     }
 
+    void ControlTab::on_spinPulseWidth_valueChanged(double value)
+    {
+        emit NotifyPulseWidthChanged(value);
+    }
+
 }

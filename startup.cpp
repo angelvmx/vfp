@@ -8,6 +8,7 @@
 #include "Model/instsocket.h"
 #include "Model/instrument.h"
 #include "ViewMgr/setupviewmanager.h"
+#include "ViewMgr/controltabviewmanager.h"
 
 namespace Ps
 {
@@ -20,7 +21,10 @@ namespace Ps
                                     *new InstSocket(this))),
         m_setupVm(new SetupViewManager(this, m_setupTab,
                                        *m_instrument,
-                                       Provider::GetSettingsAsSingleton()))
+                                       Provider::GetSettingsAsSingleton())),
+        m_controlTabVm(new ControlTabViewManager(this,
+                                                 m_controlTab,
+                                                 *m_instrument))
     {
     }
 

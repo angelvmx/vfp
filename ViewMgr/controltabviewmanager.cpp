@@ -14,6 +14,7 @@ namespace Ps
         m_instrument(inst)
     {
         WireControls();
+        WireConnected();
     }
 
     ControlTabViewManager::~ControlTabViewManager()
@@ -21,10 +22,28 @@ namespace Ps
         Utils::DestructorMsg(this);
     }
 
+    void ControlTabViewManager::onConnected()
+    {
+        m_controlTab.EnablePanel(true);
+    }
+
+    void ControlTabViewManager::onDisconnected()
+    {
+        m_controlTab.EnablePanel(false);
+    }
+
     void ControlTabViewManager::WireControls()
     {
         connect(&m_controlTab, &ControlTab::NotifyPulseWidthChanged,
                 &m_instrument, &Instrument::onPulseWidthChanged);
+    }
+
+    void ControlTabViewManager::WireConnected()
+    {
+        connect(&m_instrument, &Instrument::NotifyConnected,
+                this, &ControlTabViewManager::onConnected);
+        connect(&m_instrument, &Instrument::NotifyDisconnected,
+                this, &ControlTabViewManager::onDisconnected);
     }
 
 }

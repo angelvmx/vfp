@@ -18,6 +18,11 @@ namespace Ps
         delete ui;
     }
 
+    void ControlTab::EnablePanel(bool isEnabled)
+    {
+        ui->ControlTabPanel->setEnabled(isEnabled);
+    }
+
     void ControlTab::on_spinPulseWidth_valueChanged(double value)
     {
         emit NotifyPulseWidthChanged(value);

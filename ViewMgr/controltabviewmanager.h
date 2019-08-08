@@ -14,10 +14,17 @@ namespace Ps
                                        ControlTab& ctrlTab,
                                        Instrument& inst);
         ~ControlTabViewManager();
+
+    public slots:
+        void onConnected();
+        void onDisconnected();
+
     private:
         ControlTab& m_controlTab;
         Instrument& m_instrument;
         void WireControls();
+        void WireConnected();
+
         explicit ControlTabViewManager(const ControlTabViewManager& rhs) = delete;
         ControlTabViewManager& operator= (const ControlTabViewManager& rhs) = delete;
     };

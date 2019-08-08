@@ -37,6 +37,10 @@ namespace Ps
         {
             m_instSocket.Disconnect();
         }
+        else
+        {
+            emit NotifyDisconnected();
+        }
     }
 
     bool Instrument::isConnected() const

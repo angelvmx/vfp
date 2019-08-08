@@ -26,6 +26,7 @@ namespace Ps
                                                  m_controlTab,
                                                  *m_instrument))
     {
+        m_instrument->Disconnect();
     }
 
     Startup::~Startup()

@@ -29,7 +29,6 @@ namespace Ps
         m_instrument.SetShortWaitMs(short_wait);
         emit NotifyStatusUpdated(tr("Long Wait Ms: %1").arg(long_wait));
         emit NotifyStatusUpdated(tr("Short wait Ms: %1").arg(short_wait));
-        onDisconnected();
     }
 
     SetupViewManager::~SetupViewManager()

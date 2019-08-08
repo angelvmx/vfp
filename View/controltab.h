@@ -15,6 +15,7 @@ namespace Ps
     public:
         explicit ControlTab(QWidget *parent = 0);
         ~ControlTab();
+        void EnablePanel(bool isEnabled);
 
     signals:
         void NotifyPulseWidthChanged(double value);

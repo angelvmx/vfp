@@ -22,12 +22,12 @@ namespace Ps
         void SetShortWaitMs(int value);
 
     signals:
-        void NotifyConnected();
-        void NotifyDisconnected();
-        void NotifyDataSent(const QString& dataSent);
-        void NotifyDataReceived(const QString& readData);
-        void NotifyErrorDetected(const QString& errorMsg);
-        void NotifyStatusUpdated(const QString& statusMsg);
+        void NotifyConnected() const;
+        void NotifyDisconnected() const;
+        void NotifyDataSent(const QString& dataSent) const;
+        void NotifyDataReceived(const QString& readData) const;
+        void NotifyErrorDetected(const QString& errorMsg) const;
+        void NotifyStatusUpdated(const QString& statusMsg) const;
 
     public slots:
         void onHostNameChanged(const QString& hostName);

@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     Model/instrument.cpp \
     ViewMgr/setupviewmanager.cpp \
     View/controltab.cpp \
-    ViewMgr/controltabviewmanager.cpp
+    ViewMgr/controltabviewmanager.cpp \
+    View/aboutbox.cpp
 
 
 HEADERS  += View/mainview.h \
@@ -37,11 +38,13 @@ HEADERS  += View/mainview.h \
     Model/instrument.h \
     ViewMgr/setupviewmanager.h \
     View/controltab.h \
-    ViewMgr/controltabviewmanager.h
+    ViewMgr/controltabviewmanager.h \
+    View/aboutbox.h
 
 FORMS    += View/mainview.ui \
     View/setuptab.ui \
-    View/controltab.ui
+    View/controltab.ui \
+    View/aboutbox.ui
 
 RESOURCES += \
     VfpResources.qrc

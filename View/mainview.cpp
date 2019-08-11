@@ -26,3 +26,13 @@ namespace Ps{
   }
 
 }
+
+void Ps::MainView::on_action_Exit_triggered()
+{
+    QApplication::quit();
+}
+
+void Ps::MainView::on_action_About_triggered()
+{
+    //TODO Show an about dialog
+}

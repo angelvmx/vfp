@@ -9,6 +9,8 @@
         <file>Images/Syncor48.png</file>
         <file>Images/ControlPadW.png</file>
         <file>Images/Setup.png</file>
+        <file>Images/About.png</file>
+        <file>Images/Exit.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>settings.json</file>

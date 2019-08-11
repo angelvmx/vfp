@@ -20,6 +20,11 @@ namespace Ps {
     explicit MainView(QWidget *parent, SetupTab &setup, ControlTab &contolTab);
     ~MainView();
 
+  private slots:
+      void on_action_Exit_triggered();
+
+      void on_action_About_triggered();
+
   private:
     SetupTab& m_setupTab;
     Ui::MainView *ui;
